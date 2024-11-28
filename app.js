@@ -102,7 +102,7 @@ app.post('/', async (req, res) => {
     else{
         res.render(path.join(__dirname,"./views/login.hbs"),
     {
-        not_email : "the account is not available go to singup"
+        not_email : "the account is not available go to index"
     })
     } }
         catch (err) {
