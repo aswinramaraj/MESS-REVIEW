@@ -27,22 +27,22 @@ app.listen(port, () => {
 
 app.get('/', (req, res) => {
   
-    const signupPath = path.join(__dirname, './templete/signup.hbs');
+    const signupPath = path.join(__dirname, './views/signup.hbs');
     res.render(signupPath);
 });
 
 app.get('/login.hbs', (req, res) => {
-    res.render(path.join(__dirname, './templete/login.hbs'));
+    res.render(path.join(__dirname, './views/login.hbs'));
 });
 
 app.get('/home', (req, res) => {
     
-    res.render(path.join(__dirname, './templete/home.hbs'));
+    res.render(path.join(__dirname, './views/home.hbs'));
 });
 
 app.get('/rate', (req, res) => {
     
-    res.render(path.join(__dirname, './templete/home.hbs'));
+    res.render(path.join(__dirname, './views/home.hbs'));
 });
  
 
@@ -54,14 +54,14 @@ app.post('/', async (req, res) => {
         // Check if the email is already registered
         const mail_check = await collection.findOne({ email: mail });
         if (mail_check) {
-            return res.render(path.join(__dirname, './templete/signup.hbs'), {
+            return res.render(path.join(__dirname, './views/signup.hbs'), {
                 email_check: "Email is already registered"
             });
         }
 
         // Check if passwords match
         if (pass !== repass) {
-            return res.render(path.join(__dirname, './templete/signup.hbs'), {
+            return res.render(path.join(__dirname, './views/signup.hbs'), {
                 email_check: "Passwords do not match"
             });  
         }
@@ -92,7 +92,7 @@ app.post('/', async (req, res) => {
             const check = await collection.findOne({ email: req.body.mail });
             if (check){
                 if (check && check.pass === req.body.pass) {
-                res.render(path.join(__dirname, './templete/home.hbs'), {
+                res.render(path.join(__dirname, './views/home.hbs'), {
                     day: currentDay  // Pass the day to the template
                 });
             } else {
@@ -100,7 +100,7 @@ app.post('/', async (req, res) => {
             }
         }
     else{
-        res.render(path.join(__dirname,"./templete/login.hbs"),
+        res.render(path.join(__dirname,"./views/login.hbs"),
     {
         not_email : "the account is not available go to singup"
     })
@@ -128,11 +128,11 @@ app.post('/', async (req, res) => {
         // Check if the time is before 7:00 PM
         if (hour < 19) {
             if (!morningrate || !afternoonrate || !nightrate) {
-                return res.status(400).render(path.join(__dirname, "./templete/home.hbs"), {
+                return res.status(400).render(path.join(__dirname, "./views/home.hbs"), {
                     error: "Please provide ratings for all time periods.",
                 });
             };
-            return res.status(400).render(path.join(__dirname, "./templete/home.hbs"), {
+            return res.status(400).render(path.join(__dirname, "./views/home.hbs"), {
                 error: "You can only submit ratings after 7:00 PM.",
             });
 
@@ -159,7 +159,7 @@ app.post('/', async (req, res) => {
             await home.insertMany([data]);
     
             // Render a success response
-            res.render(path.join(__dirname, "./templete/home.hbs"), {
+            res.render(path.join(__dirname, "./views/home.hbs"), {
                 success: "Ratings submitted successfully!",
             });
     
