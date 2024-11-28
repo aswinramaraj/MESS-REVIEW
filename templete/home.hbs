@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Review</title>
+    <style>
+        :root {
+            --background: #1a1a2e;
+            --color: #ffffff;
+            --primary-color: #0f3460;
+            --highlight-color: #00d1ff; /* Brighter color for selected stars */
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: var(--background);
+            color: var(--color);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            width: 800px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h1 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+        }
+
+        input.star {
+            display: none;
+        }
+
+        label.star {
+            font-size: 40px;
+            color: #919191;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.3s ease;
+        }
+
+        /* Highlight previous stars when a star is checked */
+        input.star:checked ~ label.star {
+            color: var(--highlight-color);
+        }
+
+        /* Highlight stars progressively */
+        input.star:checked ~ label.star,
+        input.star:checked + label.star,
+        input.star:checked + label.star ~ label.star {
+            color: var(--highlight-color);
+        }
+
+        /* Star hover effect */
+        label.star:hover {
+            transform: scale(1.2);
+            color: var(--highlight-color);
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: var(--color);
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .theme-btn-container {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .theme-btn {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            margin: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/rate" method="post">
+            <div class="section">
+                <h1>MORNING</h1>
+                <div class="stars">
+                    <input class="star" id="morning-star-5" type="radio" name="morningstar" value="5">
+                    <label class="star" for="morning-star-5">&#9733;</label>
+                    <input class="star" id="morning-star-4" type="radio" name="morningstar" value="4">
+                    <label class="star" for="morning-star-4">&#9733;</label>
+                    <input class="star" id="morning-star-3" type="radio" name="morningstar" value="3">
+                    <label class="star" for="morning-star-3">&#9733;</label>
+                    <input class="star" id="morning-star-2" type="radio" name="morningstar" value="2">
+                    <label class="star" for="morning-star-2">&#9733;</label>
+                    <input class="star" id="morning-star-1" type="radio" name="morningstar" value="1">
+                    <label class="star" for="morning-star-1">&#9733;</label>
+                    
+                </div>
+            </div>
+
+            <div class="section">
+                <h1>AFTERNOON</h1>
+                <div class="stars">
+                    <input class="star" id="afternoon-star-1" type="radio" name="afternoonstar" value="1">
+                    <label class="star" for="afternoon-star-1">&#9733;</label>
+                    <input class="star" id="afternoon-star-2" type="radio" name="afternoonstar" value="2">
+                    <label class="star" for="afternoon-star-2">&#9733;</label>
+                    <input class="star" id="afternoon-star-3" type="radio" name="afternoonstar" value="3">
+                    <label class="star" for="afternoon-star-3">&#9733;</label>
+                    <input class="star" id="afternoon-star-4" type="radio" name="afternoonstar" value="4">
+                    <label class="star" for="afternoon-star-4">&#9733;</label>
+                    <input class="star" id="afternoon-star-5" type="radio" name="afternoonstar" value="5">
+                    <label class="star" for="afternoon-star-5">&#9733;</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h1>NIGHT</h1>
+                <div class="stars">
+                    <input class="star" id="night-star-1" type="radio" name="nightstar" value="1">
+                    <label class="star" for="night-star-1">&#9733;</label>
+                    <input class="star" id="night-star-2" type="radio" name="nightstar" value="2">
+                    <label class="star" for="night-star-2">&#9733;</label>
+                    <input class="star" id="night-star-3" type="radio" name="nightstar" value="3">
+                    <label class="star" for="night-star-3">&#9733;</label>
+                    <input class="star" id="night-star-4" type="radio" name="nightstar" value="4">
+                    <label class="star" for="night-star-4">&#9733;</label>
+                    <input class="star" id="night-star-5" type="radio" name="nightstar" value="5">
+                    <label class="star" for="night-star-5">&#9733;</label>
+                </div>
+            </div>
+  <h4>{{error}}</h4>
+  <h4>{{success}}</h4>
+            <button type="submit" >Submit</button>
+        </form>
+    </div>
+
+    <div class="theme-btn-container"></div>
+    <script>
+        const themes = [
+            { background: "#1a1a2e", color: "#ffffff", primaryColor: "#0f3460" },
+            { background: "#461220", color: "#ffffff", primaryColor: "#e94560" },
+            { background: "#192a51", color: "#ffffff", primaryColor: "#967aa1" },
+            { background: "#f7b267", color: "#000000", primaryColor: "#f4845f" },
+            { background: "#f25f5c", color: "#000000", primaryColor: "#642b36" },
+        ];
+
+        const setTheme = (theme) => {
+            const root = document.documentElement;
+            root.style.setProperty("--background", theme.background);
+            root.style.setProperty("--color", theme.color);
+            root.style.setProperty("--primary-color", theme.primaryColor);
+        };
+
+        const displayThemeButtons = () => {
+            const container = document.querySelector(".theme-btn-container");
+            themes.forEach((theme) => {
+                const btn = document.createElement("div");
+                btn.classList.add("theme-btn");
+                btn.style.background = theme.background;
+                btn.addEventListener("click", () => setTheme(theme));
+                container.appendChild(btn);
+            });
+        };
+
+        displayThemeButtons();
+    </script>
+</body>
+</html>
