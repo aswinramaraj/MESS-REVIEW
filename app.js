@@ -17,7 +17,8 @@ require('dotenv').config({path:"./pass.env"});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.set("view engine", "hbs");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(port, () => {
@@ -26,25 +27,21 @@ app.listen(port, () => {
 
 
 app.get('/', (req, res) => {
-  
-    const signupPath = path.join(__dirname, './views/signup.hbs');
-    res.render(signupPath);
+    res.render('index'); // Automatically looks for 'index.hbs' in the views directory
 });
 
-app.get('/login.hbs', (req, res) => {
-    res.render(path.join(__dirname, './views/login.hbs'));
+app.get('/login', (req, res) => {
+    res.render('login'); // Automatically looks for 'login.hbs' in the views directory
 });
 
 app.get('/home', (req, res) => {
-    
-    res.render(path.join(__dirname, './views/home.hbs'));
+    res.render('home'); // Automatically looks for 'home.hbs' in the views directory
 });
 
 app.get('/rate', (req, res) => {
-    
-    res.render(path.join(__dirname, './views/home.hbs'));
+    res.render('home'); // Use 'home.hbs' for this route
 });
- 
+
 
 
 app.post('/', async (req, res) => {
