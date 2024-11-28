@@ -9,7 +9,7 @@ mongoose.connect("mongodb+srv://mess:mess123@cluster0.wpwgs.mongodb.net/mess", {
 })
 .then(() => {
     console.log("database connected");
-    console.log("index");
+    console.log("app");
 
 })
 .catch(err => {
